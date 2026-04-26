@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+
+# expo
+.expo/
+.expo-shared/
+dist/
+web-build/
+
+# native build outputs (created by `expo prebuild`)
+ios/
+android/
+
+# env files — never commit secrets
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+log.txt
+
+# personal/local Claude skills (project-specific agents live in .claude/)
+.agents/
+
+# editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# misc
+*.tsbuildinfo

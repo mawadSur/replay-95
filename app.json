@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Replay '95",
+    "slug": "replay-95",
+    "scheme": "replay95",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "plugins": [
+      "expo-router",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow Replay '95 to record voice memories."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Replay '95 to capture memory booth moments."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "defaultChannel": "nightly-memory"
+        }
+      ],
+      "@sentry/react-native"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {},
+    "experiments": {
+      "tsconfigPaths": true
+    }
+  }
+}
