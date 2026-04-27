@@ -6,6 +6,12 @@
     "version": "0.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#1A0E26"
+    },
     "plugins": [
       "expo-router",
       [
@@ -29,9 +35,27 @@
       "@sentry/react-native"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mawadSur.replay95",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "Allow Replay '95 to capture memory booth moments.",
+        "NSMicrophoneUsageDescription": "Allow Replay '95 to record voice memories.",
+        "NSPhotoLibraryAddUsageDescription": "Save memory booth photos to your camera roll.",
+        "NSUserNotificationsUsageDescription": "Replay '95 sends a nightly Memory Channel reminder."
+      }
     },
-    "android": {},
+    "android": {
+      "package": "com.mawadSur.replay95",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1A0E26"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
     "experiments": {
       "tsconfigPaths": true
     }
