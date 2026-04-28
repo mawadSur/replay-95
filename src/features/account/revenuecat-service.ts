@@ -20,6 +20,7 @@ export const REPLAY_PLUS_ENTITLEMENT_ID = "replay_plus";
 const offeringsKey = ["replay-plus", "offerings"] as const;
 
 let isConfigured = false;
+let configureFailed = false;
 
 function pickApiKey(): string {
   return Platform.select({
@@ -29,11 +30,23 @@ function pickApiKey(): string {
   }) ?? "";
 }
 
+// Real RevenueCat keys begin with `appl_` (iOS) or `goog_` (Android).
+// Anything else (empty, placeholder, malformed) disables purchases so a
+// bad key can't crash the app at launch.
+function isLikelyValidApiKey(key: string): boolean {
+  if (Platform.OS === "ios") return key.startsWith("appl_");
+  if (Platform.OS === "android") return key.startsWith("goog_");
+  return false;
+}
+
 export function isPurchasesAvailable(): boolean {
   if (Platform.OS === "web") {
     return false;
   }
-  return Boolean(pickApiKey());
+  if (configureFailed) {
+    return false;
+  }
+  return isLikelyValidApiKey(pickApiKey());
 }
 
 export async function configurePurchases(appUserID?: string | null) {
@@ -44,8 +57,13 @@ export async function configurePurchases(appUserID?: string | null) {
   const apiKey = pickApiKey();
 
   if (!isConfigured) {
-    Purchases.configure({ apiKey, appUserID: appUserID ?? undefined });
-    isConfigured = true;
+    try {
+      Purchases.configure({ apiKey, appUserID: appUserID ?? undefined });
+      isConfigured = true;
+    } catch (error) {
+      configureFailed = true;
+      reportError(error, { stage: "purchases.configure" });
+    }
     return;
   }
 

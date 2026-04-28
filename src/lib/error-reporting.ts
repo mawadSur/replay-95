@@ -17,12 +17,16 @@ export function initErrorReporting() {
     return;
   }
 
-  Sentry.init({
-    dsn: env.sentryDsn,
-    enableAutoSessionTracking: true,
-    tracesSampleRate: 0.2,
-    enableNative: true,
-  });
+  try {
+    Sentry.init({
+      dsn: env.sentryDsn,
+      enableAutoSessionTracking: true,
+      tracesSampleRate: 0.2,
+      enableNative: true,
+    });
+  } catch (error) {
+    console.error("Sentry init failed:", error);
+  }
 }
 
 export function reportError(error: unknown, context?: ErrorContext) {
