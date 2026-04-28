@@ -1,0 +1,34 @@
+{
+  "$schema": "https://raw.githubusercontent.com/expo/eas-cli/main/packages/eas-cli/schema/metadata-0.json",
+  "configVersion": 0,
+  "apple": {
+    "info": {
+      "en-US": {
+        "title": "Replay '95",
+        "subtitle": "Your 90s life. Reloaded.",
+        "description": "Replay '95 is a personalized nostalgia journal and daily interactive experience that rebuilds the 90s as if you're living it again — through today's technology.\n\nEach evening, get a short Memory Channel episode tied to your real 90s memories. Reply with text or a voice memo. Pass folded notes to friends through Classroom Notes. Earn pogs by completing weekend Saturday Morning quests and unlock retro decorations for your bedroom diorama.\n\nNo infinite scrolling. No algorithmic feed. Just a quiet, curated check-in once or twice a day for people born 1980–1995 who remember life before the internet.",
+        "keywords": ["nostalgia", "90s", "journal", "memory", "retro", "throwback"],
+        "marketingUrl": "https://www.surconsultinggroup.com/",
+        "supportUrl": "https://www.surconsultinggroup.com/",
+        "privacyPolicyUrl": "https://www.surconsultinggroup.com/"
+      }
+    },
+    "categories": ["LIFESTYLE", "SOCIAL_NETWORKING"],
+    "advisory": {
+      "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+      "contests": "NONE",
+      "gamblingSimulated": "NONE",
+      "horrorOrFearThemes": "NONE",
+      "matureOrSuggestiveThemes": "NONE",
+      "medicalOrTreatmentInformation": "NONE",
+      "profanityOrCrudeHumor": "NONE",
+      "sexualContentGraphicAndNudity": "NONE",
+      "sexualContentOrNudity": "NONE",
+      "violenceCartoonOrFantasy": "NONE",
+      "violenceRealistic": "NONE",
+      "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+      "gambling": false,
+      "unrestrictedWebAccess": false
+    }
+  }
+}
