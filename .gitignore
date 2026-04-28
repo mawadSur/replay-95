@@ -22,6 +22,8 @@ yarn-debug.*
 yarn-error.*
 *.log
 log.txt
+*.crash
+*.ips
 
 # personal/local Claude skills (project-specific agents live in .claude/)
 .agents/
