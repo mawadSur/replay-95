@@ -32,7 +32,8 @@
           "defaultChannel": "nightly-memory"
         }
       ],
-      "@sentry/react-native"
+      "@sentry/react-native",
+      "expo-asset"
     ],
     "ios": {
       "supportsTablet": true,
