@@ -10,10 +10,26 @@ import {
   formatNotificationTimeLabel,
 } from "@/features/profile/profile-personalization";
 import { STARTING_POG_BALANCE } from "@/features/profile/profile-service";
+import { reportError } from "@/lib/error-reporting";
 import { useReplayApp } from "@/state/replay-context";
 import { tokens } from "@/theme/tokens";
 
 import { ONBOARDING_STEPS, goBackOrReplace } from "./_layout";
+
+// Supabase PostgrestError is not an Error instance but has these fields.
+function describeSaveError(error: unknown): string {
+  if (error instanceof Error && error.message) {
+    return error.message;
+  }
+  if (typeof error === "object" && error !== null) {
+    const e = error as { message?: string; details?: string; hint?: string; code?: string };
+    const parts = [e.message, e.details, e.hint, e.code ? `(code ${e.code})` : null].filter(Boolean);
+    if (parts.length > 0) {
+      return parts.join(" — ");
+    }
+  }
+  return "We couldn't save your profile yet. Try again.";
+}
 
 export default function DoneScreen() {
   const {
@@ -34,11 +50,8 @@ export default function DoneScreen() {
       // `/(tabs)/today` once `hasCompletedOnboarding` flips, so we don't
       // race a manual `router.replace` against that gate here.
     } catch (error) {
-      setErrorText(
-        error instanceof Error
-          ? error.message
-          : "We couldn't save your profile yet. Try again.",
-      );
+      reportError(error, { stage: "onboarding.completeOnboarding" });
+      setErrorText(describeSaveError(error));
     }
   };
 
